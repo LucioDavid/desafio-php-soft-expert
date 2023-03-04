@@ -1,0 +1,38 @@
+<?php
+
+use Src\Core\Database\DBDriver;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+checkArgvIndex('1', $argv);
+
+switch ($argv[1]) {
+    case 'serve':
+        echo exec("php -S {$_ENV['APP_HOST']}:{$_ENV['APP_PORT']} -t public/");
+        break;
+
+    case 'db:init':
+        $db = new DBDriver();
+        $db->initDB();
+        exit('Database initialization completed successfully.');
+        break;
+
+    default:
+        echo "Command \"{$argv[1]}\" not recognized.";
+        break;
+}
+
+exit;
+
+function checkArgvIndex(string $index = null, $argv)
+{
+    if (!isset($argv[$index])) {
+        if ($index === 1) {
+            die('Add a command. E.g.: "php cli serve"');
+        }
+        die('ERROR: Insufficient parameters.');
+    }
+}

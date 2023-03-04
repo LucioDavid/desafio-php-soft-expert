@@ -1,0 +1,20 @@
+{
+    "name": "lucio-david/assessment-backend-xp",
+    "autoload": {
+        "files": [
+            "src/Core/Helpers/UrlHelper.php"
+        ],
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lúcio Meira David",
+            "email": "luciomeiradavid@hotmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
